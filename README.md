@@ -29,11 +29,11 @@ HTML (Estrutura com <frameset>)
 Estarei sempre postando novos releases para caso vocês, usuários queiram o código-fonte de cada versão!
 
 ### **ATENÇÃO!**
-O trabalho em cima do site ainda está em progresso, e faltam finalizar as páginas.
+É recomendado o acesso ao site apenas pelo computador, pois o site ainda não está estilizado para o celular, e também é recomendado o uso pelo navegador Google Chrome, pois não foi testado em outros navegadores.
 
-Além disso, é recomendado o acesso ao site apenas pelo computador, pois o site ainda não está estilizado para o celular, e também é recomendado o uso pelo navegador Google Chrome, pois não foi testado em outros navegadores.
+Apesar da versão v1.0.0 ter sido lançada, novas versões serão lançadas e o trabalho no site sempre estará acontecendo.
 
-Versão atual: 0.1.2
+Versão atual: v1.0.0
 
 Histórico de versões publicadas:
 
@@ -43,7 +43,7 @@ v0.1.1 - 18/set/2026 second-build
 
 v0.1.2 - 24/set/2026 build
 
-v1.0.0 em desenvolvimento
+v1.0.0 - 25/set/2026 build
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
