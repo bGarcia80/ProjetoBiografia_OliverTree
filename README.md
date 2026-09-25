@@ -33,7 +33,7 @@ O trabalho em cima do site ainda está em progresso, e faltam finalizar as pági
 
 Além disso, é recomendado o acesso ao site apenas pelo computador, pois o site ainda não está estilizado para o celular, e também é recomendado o uso pelo navegador Google Chrome, pois não foi testado em outros navegadores.
 
-Versão atual: 0.1.1
+Versão atual: 0.1.2
 
 Histórico de versões publicadas:
 
