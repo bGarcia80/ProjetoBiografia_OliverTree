@@ -33,7 +33,7 @@ Estarei sempre postando novos releases para caso vocês, usuários queiram o có
 
 Apesar da versão v1.0.0 ter sido lançada, novas versões serão lançadas e o trabalho no site sempre estará acontecendo.
 
-Versão atual: v1.0.0
+Versão atual: v1.0.1
 
 Histórico de versões publicadas:
 
