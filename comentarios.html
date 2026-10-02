@@ -9,6 +9,10 @@
 <body bgcolor="#db7790">
  
 <font face="Comic Sans MS" color="#1b548d" size="5">
+
+<marquee scrollamount="8" style="background-color:#db7790; color:#1b548d; font-size: 24px; height: 50px; line-height: 50px; width: 100%;">
+    Assistam ao vídeo "The Remarkable Life of Cornelius Cummings (Bounce x One & Only x With You) [Short Film]" no canal oficial do Oliver Tree!
+</marquee>
  
 <h2 align="center">Mural de Comentários</h2>
 <h4 align="center"><i>Deixe o seu comentário ou homenagem abaixo!</i></h4>
@@ -56,7 +60,7 @@
 
   // COLOQUE A SUA URL DO SHEETBEST AQUI:
 
-  var apiURL = "https://api.sheetbest.com/sheets/a6dd0bcb-d3bb-4d66-9831-49d7ee145c06";
+  var apiURL = "https://sheet.best/api/sheets/62ccbdbe-633e-4ce2-9f25-0057b8a45066";
  
   // Busca e exibe as mensagens da planilha
 
@@ -87,13 +91,13 @@
         data.reverse().forEach(function(m) {
 
           var tabela = `
-<table border="1" bordercolor="#889399" bgcolor="#0d0d0d" align="center" width="60%" cellpadding="8">
+<table border="3" bordercolor="#554e9c" bgcolor="#db7790" align="center" width="60%" cellpadding="8">
 <tr>
 <td>
 <b>De:</b> ${m.nome}
 <hr color="#1b548d">
 
-                    "${m.mensagem}"
+                    "${m.comentario}"
 </td>
 </tr>
 </table><br>
@@ -130,7 +134,7 @@
 
       nome: document.getElementById("nome").value,
 
-      comentarios: document.getElementById("comentarios").value
+      comentario: document.getElementById("comentario").value
 
     };
  
