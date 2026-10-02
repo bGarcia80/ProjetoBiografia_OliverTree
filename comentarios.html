@@ -1,16 +1,197 @@
 <!DOCTYPE html>
 <html lang="pt_BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Comentarios</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Comentários</title>
 </head>
 <body bgcolor="#db7790">
-<font face="Comic Sans MS" color="#1b548d" size=4>
+<font face="Comic Sans MS" color="#1b548d" size="4">
+ 
 <marquee scrollamount="8" style="background-color:#db7790; color:#1b548d; font-size: 24px; height: 50px; line-height: 50px; width: 100%;">
+
     Assistam ao vídeo "The Remarkable Life of Cornelius Cummings (Bounce x One & Only x With You) [Short Film]" no canal oficial do Oliver Tree!
 </marquee>
-
+ 
+<h1 align="center">💬 Mural de Comentários</h1>
+ 
+<p align="center">Deixe a seu comentário ou homenagem no mural abaixo!</p>
+ 
+<hr color="#1b548d">
+ 
+<h2>Deixar um comentário:</h2>
+<form id="commentForm">
+<p>
+<b>Seu Nome / Apelido:</b><br>
+<input type="text" id="nome" name="nome" size="40" required style="font-family: 'Comic Sans MS';">
+</p>
+<p>
+<b>Seu Comentário:</b><br>
+<textarea id="mensagem" name="mensagem" rows="5" cols="50" required style="font-family: 'Comic Sans MS';"></textarea>
+</p>
+<p>
+<button type="submit" id="btnEnviar" style="font-family: 'Comic Sans MS'; color: #1b548d; font-size: 16px;">Enviar Comentário</button>
+</p>
+</form>
+ 
+<hr color="#1b548d">
+ 
+<h2>Comentários Recentes:</h2>
+ 
+<div id="containerComentarios">
+<p>Carregando comentários...</p>
+</div>
+ 
 </font>
+ 
+<script>
+
+    // Cole aqui o link da sua API do Sheet Best
+
+    const SHEET_BEST_URL = 'https://api.sheetbest.com/sheets/a6dd0bcb-d3bb-4d66-9831-49d7ee145c06';
+ 
+    // Função para carregar comentários da planilha
+
+    function carregarComentarios() {
+
+        const container = document.getElementById('containerComentarios');
+ 
+        fetch(SHEET_BEST_URL)
+
+            .then(response => response.json())
+
+            .then(data => {
+
+                container.innerHTML = '';
+ 
+                if (!data || data.length === 0) {
+
+                    container.innerHTML = '<p>Nenhum comentário enviado ainda. Seja o primeiro!</p>';
+
+                    return;
+
+                }
+ 
+                // Exibe os comentários do mais recente para o mais antigo
+
+                data.reverse().forEach(item => {
+
+                    const tabela = document.createElement('table');
+
+                    tabela.setAttribute('border', '2');
+
+                    tabela.setAttribute('bordercolor', '#1b548d');
+
+                    tabela.setAttribute('width', '100%');
+
+                    tabela.setAttribute('cellpadding', '10');
+
+                    tabela.setAttribute('bgcolor', '#f5b3c3');
+
+                    tabela.style.marginBottom = '15px';
+ 
+                    tabela.innerHTML = `
+<tr>
+<td>
+<b>Enviado por:</b> ${item.nome || 'Anônimo'} <br>
+<font size="2"><i>${item.data || ''}</i></font>
+<p align="justify">${item.mensagem || ''}</p>
+</td>
+</tr>
+
+                    `;
+
+                    container.appendChild(tabela);
+
+                });
+
+            })
+
+            .catch(error => {
+
+                console.error('Erro ao carregar comentários:', error);
+
+                container.innerHTML = '<p>Erro ao carregar os comentários. Verifique a URL do Sheet Best.</p>';
+
+            });
+
+    }
+ 
+    // Envio do formulário via POST para o Sheet Best
+
+    document.getElementById('commentForm').addEventListener('submit', function(e) {
+
+        e.preventDefault();
+ 
+        const btn = document.getElementById('btnEnviar');
+
+        btn.disabled = true;
+
+        btn.innerText = 'Enviando...';
+ 
+        const nome = document.getElementById('nome').value;
+
+        const comentario = document.getElementById('comentario').value;
+
+        const data = new Date().toLocaleString('pt-BR');
+ 
+        fetch(SHEET_BEST_URL, {
+
+            method: 'POST',
+
+            headers: {
+
+                'Content-Type': 'application/json'
+
+            },
+
+            body: JSON.stringify({
+
+                nome: nome,
+
+                comentario: comentario,
+
+                data: data
+
+            })
+
+        })
+
+        .then(response => response.json())
+
+        .then(() => {
+
+            alert('Comentário enviado com sucesso!');
+
+            document.getElementById('commentForm').reset();
+
+            btn.disabled = false;
+
+            btn.innerText = 'Enviar Comentário';
+
+            carregarComentarios();
+
+        })
+
+        .catch(error => {
+
+            console.error('Erro ao enviar:', error);
+
+            alert('Ocorreu um erro ao enviar o comentário.');
+
+            btn.disabled = false;
+
+            btn.innerText = 'Enviar Comentário';
+
+        });
+
+    });
+ 
+    // Carrega os comentários assim que a página abre
+
+    carregarComentarios();
+</script>
+ 
 </body>
 </html>
+ 
