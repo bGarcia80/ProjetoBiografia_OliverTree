@@ -1,197 +1,185 @@
 <!DOCTYPE html>
-<html lang="pt_BR">
+<html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Comentários</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comentarios</title>
 </head>
+ 
 <body bgcolor="#db7790">
-<font face="Comic Sans MS" color="#1b548d" size="4">
  
-<marquee scrollamount="8" style="background-color:#db7790; color:#1b548d; font-size: 24px; height: 50px; line-height: 50px; width: 100%;">
-
-    Assistam ao vídeo "The Remarkable Life of Cornelius Cummings (Bounce x One & Only x With You) [Short Film]" no canal oficial do Oliver Tree!
-</marquee>
+<font face="Comic Sans MS" color="#1b548d" size="5">
  
-<h1 align="center">💬 Mural de Comentários</h1>
- 
-<p align="center">Deixe a seu comentário ou homenagem no mural abaixo!</p>
+<h2 align="center">Mural de Comentários</h2>
+<h4 align="center"><i>Deixe o seu comentário ou homenagem abaixo!</i></h4>
  
 <hr color="#1b548d">
  
-<h2>Deixar um comentário:</h2>
-<form id="commentForm">
-<p>
-<b>Seu Nome / Apelido:</b><br>
-<input type="text" id="nome" name="nome" size="40" required style="font-family: 'Comic Sans MS';">
-</p>
-<p>
-<b>Seu Comentário:</b><br>
-<textarea id="mensagem" name="mensagem" rows="5" cols="50" required style="font-family: 'Comic Sans MS';"></textarea>
-</p>
-<p>
-<button type="submit" id="btnEnviar" style="font-family: 'Comic Sans MS'; color: #1b548d; font-size: 16px;">Enviar Comentário</button>
-</p>
+<!-- Formulário -->
+<form align="center" id="formMural" onsubmit="enviarMensagem(event)">
+<table border="1" bordercolor="#4a0e17" bgcolor="#0d0d0d" align="center" cellpadding="10" cellspacing="0">
+<tr>
+<td align="right"><b>Seu Nome / Apelido:</b></td>
+<td align="left">
+<input type="text" id="nome" size="30" placeholder="Insira seu nome aqui..." required>
+</td>
+</tr>
+ 
+<tr>
+<td align="right" valign="top"><b>Seu comentário:</b></font></td>
+<td align="left">
+<textarea id="mensagem" rows="5" cols="33" placeholder="Escreva aqui o seu comentário..." required></textarea>
+</td>
+</tr>
+ 
+    <tr>
+<td colspan="2" align="center">
+<input type="submit" value="Enviar Comentário" id="btnEnviar">
+<input type="reset" value="Limpar">
+</td>
+</tr>
+</table>
 </form>
  
 <hr color="#1b548d">
  
-<h2>Comentários Recentes:</h2>
+<h3 align="center">Últimos Comentários></h3>
  
-<div id="containerComentarios">
-<p>Carregando comentários...</p>
-</div>
+<!-- Área onde as mensagens públicas vão aparecer -->
+<div id="listaComentarios"></div>
+ 
+<hr color="#1b548d">
  
 </font>
  
 <script>
 
-    // Cole aqui o link da sua API do Sheet Best
+  // COLOQUE A SUA URL DO SHEETBEST AQUI:
 
-    const SHEET_BEST_URL = 'https://api.sheetbest.com/sheets/a6dd0bcb-d3bb-4d66-9831-49d7ee145c06';
+  var apiURL = "https://api.sheetbest.com/sheets/a6dd0bcb-d3bb-4d66-9831-49d7ee145c06";
  
-    // Função para carregar comentários da planilha
+  // Busca e exibe as mensagens da planilha
 
-    function carregarComentarios() {
+  function buscarMensagens() {
 
-        const container = document.getElementById('containerComentarios');
+    var container = document.getElementById("listaComentarios");
+
+    container.innerHTML = '<p align="center"><font size="4"><i>Carregando comentários...</i></font></p>';
  
-        fetch(SHEET_BEST_URL)
+    fetch(apiURL)
 
-            .then(response => response.json())
+      .then(response => response.json())
 
-            .then(data => {
+      .then(data => {
 
-                container.innerHTML = '';
+        container.innerHTML = "";
+
+        if (!data || data.length === 0) {
+
+          container.innerHTML = '<p align="center"><font size="4"><i>Nenhuma mensagem enviada ainda... Seja o primeiro!</i></font></p>';
+
+          return;
+
+        }
  
-                if (!data || data.length === 0) {
+        // Mostra as mensagens mais recentes no topo (ordem reversa)
 
-                    container.innerHTML = '<p>Nenhum comentário enviado ainda. Seja o primeiro!</p>';
+        data.reverse().forEach(function(m) {
 
-                    return;
-
-                }
- 
-                // Exibe os comentários do mais recente para o mais antigo
-
-                data.reverse().forEach(item => {
-
-                    const tabela = document.createElement('table');
-
-                    tabela.setAttribute('border', '2');
-
-                    tabela.setAttribute('bordercolor', '#1b548d');
-
-                    tabela.setAttribute('width', '100%');
-
-                    tabela.setAttribute('cellpadding', '10');
-
-                    tabela.setAttribute('bgcolor', '#f5b3c3');
-
-                    tabela.style.marginBottom = '15px';
- 
-                    tabela.innerHTML = `
+          var tabela = `
+<table border="1" bordercolor="#889399" bgcolor="#0d0d0d" align="center" width="60%" cellpadding="8">
 <tr>
 <td>
-<b>Enviado por:</b> ${item.nome || 'Anônimo'} <br>
-<font size="2"><i>${item.data || ''}</i></font>
-<p align="justify">${item.mensagem || ''}</p>
+<b>De:</b> ${m.nome}
+<hr color="#1b548d">
+
+                    "${m.mensagem}"
 </td>
 </tr>
+</table><br>
 
-                    `;
+          `;
 
-                    container.appendChild(tabela);
-
-                });
-
-            })
-
-            .catch(error => {
-
-                console.error('Erro ao carregar comentários:', error);
-
-                container.innerHTML = '<p>Erro ao carregar os comentários. Verifique a URL do Sheet Best.</p>';
-
-            });
-
-    }
- 
-    // Envio do formulário via POST para o Sheet Best
-
-    document.getElementById('commentForm').addEventListener('submit', function(e) {
-
-        e.preventDefault();
- 
-        const btn = document.getElementById('btnEnviar');
-
-        btn.disabled = true;
-
-        btn.innerText = 'Enviando...';
- 
-        const nome = document.getElementById('nome').value;
-
-        const comentario = document.getElementById('comentario').value;
-
-        const data = new Date().toLocaleString('pt-BR');
- 
-        fetch(SHEET_BEST_URL, {
-
-            method: 'POST',
-
-            headers: {
-
-                'Content-Type': 'application/json'
-
-            },
-
-            body: JSON.stringify({
-
-                nome: nome,
-
-                comentario: comentario,
-
-                data: data
-
-            })
-
-        })
-
-        .then(response => response.json())
-
-        .then(() => {
-
-            alert('Comentário enviado com sucesso!');
-
-            document.getElementById('commentForm').reset();
-
-            btn.disabled = false;
-
-            btn.innerText = 'Enviar Comentário';
-
-            carregarComentarios();
-
-        })
-
-        .catch(error => {
-
-            console.error('Erro ao enviar:', error);
-
-            alert('Ocorreu um erro ao enviar o comentário.');
-
-            btn.disabled = false;
-
-            btn.innerText = 'Enviar Comentário';
+          container.innerHTML += tabela;
 
         });
 
-    });
- 
-    // Carrega os comentários assim que a página abre
+      })
 
-    carregarComentarios();
-</script>
+      .catch(err => {
+
+        container.innerHTML = '<p align="center"><font color="red">Erro ao carregar os comentários. Tente novamente mais tarde.</font></p>';
+
+      });
+
+  }
  
+  // Envia a nova mensagem para o Google Sheets
+
+  function enviarMensagem(event) {
+
+    event.preventDefault();
+ 
+    var btn = document.getElementById("btnEnviar");
+
+    btn.value = "Enviando...";
+
+    btn.disabled = true;
+ 
+    var dados = {
+
+      nome: document.getElementById("nome").value,
+
+      comentarios: document.getElementById("comentarios").value
+
+    };
+ 
+    fetch(apiURL, {
+
+      method: "POST",
+
+      headers: {
+
+        "Content-Type": "application/json"
+
+      },
+
+      body: JSON.stringify(dados)
+
+    })
+
+    .then(response => response.json())
+
+    .then(() => {
+
+      document.getElementById("formMural").reset();
+
+      btn.value = "Enviar comentário";
+
+      btn.disabled = false;
+
+      buscarMensagens(); // Atualiza o mural imediatamente!
+
+    })
+
+    .catch(err => {
+
+      alert("Houve um erro ao salvar seu comentário.");
+
+      btn.value = "Enviar comentário";
+
+      btn.disabled = false;
+
+    });
+
+  }
+ 
+  // Carrega ao abrir a página
+
+  window.onload = buscarMensagens;
+
+</script>
+
 </body>
 </html>
  
