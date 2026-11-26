@@ -1,351 +1,472 @@
 :root {
-    --bg-pink: #db7790;
-    --bg-pink-light: rgba(255, 255, 255, 0.14);
-    --text-blue: #1b548d;
-    --border-purple: #554e9c;
-    --font-main: "Comic Sans MS", "Chalkboard SE", "Comic Neue", cursive, sans-serif;
+  --bg-pink: #db7790;
+  --bg-pink-light: rgba(255, 255, 255, 0.16);
+  --text-blue: #1b548d;
+  --border-purple: #554e9c;
+  --font-main:
+    "Comic Sans MS", "Chalkboard SE", "Comic Neue", cursive, sans-serif;
 }
 
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-    background-color: var(--bg-pink);
-    color: var(--text-blue);
-    font-family: var(--font-main);
-    font-size: 1.05rem;
-    line-height: 1.65;
-    overflow: hidden;
-    /* Mantém a sensação de frameset fixo no desktop */
+  background-color: var(--bg-pink);
+  color: var(--text-blue);
+  font-family: var(--font-main);
+  font-size: 1.05rem;
+  line-height: 1.65;
+  overflow: hidden;
 }
 
-/* Estrutura Principal (Substitui o Frameset) */
 .app-layout {
-    display: grid;
-    grid-template-rows: 75px calc(100vh - 75px);
-    grid-template-columns: 240px 1fr;
-    grid-template-areas:
-        "topo topo"
-        "menu conteudo";
-    height: 100vh;
+  display: grid;
+  grid-template-rows: 75px calc(100vh - 75px);
+  grid-template-columns: 240px 1fr;
+  grid-template-areas:
+    "topo topo"
+    "menu conteudo";
+  height: 100vh;
 }
 
-/* Topo */
 .topo {
-    grid-area: topo;
-    background-color: var(--bg-pink);
-    border-bottom: 5px solid var(--border-purple);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 20px;
-    position: relative;
+  grid-area: topo;
+  background-color: var(--bg-pink);
+  border-bottom: 5px solid var(--border-purple);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px;
+  position: relative;
 }
 
 .topo h1 {
-    font-size: clamp(1.1rem, 2.3vw, 1.8rem);
-    text-align: center;
-    font-weight: bold;
-    letter-spacing: 0.5px;
+  font-size: clamp(1.1rem, 2.3vw, 1.8rem);
+  text-align: center;
+  font-weight: bold;
+  letter-spacing: 0.5px;
 }
 
 .menu-toggle {
-    display: none;
-    position: absolute;
-    left: 15px;
-    background: var(--text-blue);
-    color: var(--bg-pink);
-    border: 2px solid var(--border-purple);
-    border-radius: 6px;
-    font-size: 1.4rem;
-    padding: 4px 10px;
-    cursor: pointer;
+  display: none;
+  position: absolute;
+  left: 15px;
+  background: var(--text-blue);
+  color: var(--bg-pink);
+  border: 2px solid var(--border-purple);
+  border-radius: 6px;
+  font-size: 1.4rem;
+  padding: 4px 10px;
+  cursor: pointer;
 }
 
-/* Menu Lateral */
 .menu {
-    grid-area: menu;
-    background-color: var(--bg-pink);
-    border-right: 5px solid var(--border-purple);
-    padding: 45px 25px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    overflow-y: auto;
+  grid-area: menu;
+  background-color: var(--bg-pink);
+  border-right: 5px solid var(--border-purple);
+  padding: 45px 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow-y: auto;
 }
 
 .menu ol {
-    padding-left: 28px;
-    font-size: 1.25rem;
+  padding-left: 28px;
+  font-size: 1.25rem;
 }
 
 .menu li {
-    margin-bottom: 16px;
+  margin-bottom: 16px;
 }
 
 .menu a {
-    color: var(--text-blue);
-    text-decoration: underline;
-    text-underline-offset: 4px;
-    display: inline-block;
-    padding: 4px 8px;
-    border-radius: 6px;
-    transition: all 0.2s ease;
+  color: var(--text-blue);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
 }
 
 .menu a:hover {
-    background-color: var(--bg-pink-light);
-    transform: translateX(4px);
+  background-color: var(--bg-pink-light);
+  transform: translateX(4px);
 }
 
 .menu a.active {
-    background-color: var(--text-blue);
-    color: #ffffff;
-    text-decoration: none;
-    font-weight: bold;
+  background-color: var(--text-blue);
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: bold;
 }
 
 .menu-home {
-    padding-left: 22px;
-    font-size: 1.15rem;
-    margin-top: 30px;
+  padding-left: 22px;
+  font-size: 1.15rem;
+  margin-top: 30px;
 }
 
-/* Área de Conteúdo */
 .conteudo {
-    grid-area: conteudo;
-    padding: 35px 50px;
-    overflow-y: auto;
-    scroll-behavior: smooth;
+  grid-area: conteudo;
+  padding: 35px 50px;
+  overflow-y: auto;
+  scroll-behavior: smooth;
 }
 
 .page-wrapper {
-    max-width: 920px;
-    margin: 0 auto;
-    animation: fadeIn 0.25s ease-in-out;
+  max-width: 920px;
+  margin: 0 auto;
+  animation: fadeIn 0.25s ease-in-out;
 }
 
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(6px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* Tipografia e Elementos Internos */
 h1.page-title {
-    text-align: center;
-    font-size: 2rem;
-    margin-bottom: 20px;
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 20px;
 }
 
 h2 {
-    font-size: 1.5rem;
-    margin: 22px 0 14px;
+  font-size: 1.5rem;
+  margin: 22px 0 14px;
 }
 
 p {
-    text-align: justify;
-    margin-bottom: 16px;
+  text-align: justify;
+  margin-bottom: 16px;
 }
 
 a.inline-link {
-    color: var(--text-blue);
-    text-decoration: underline;
-    font-weight: bold;
+  color: var(--text-blue);
+  text-decoration: underline;
+  font-weight: bold;
 }
 
 a.inline-link:hover {
-    opacity: 0.75;
+  opacity: 0.75;
 }
 
 hr {
-    border: none;
-    height: 3px;
-    background-color: var(--text-blue);
-    margin: 30px 0;
-    border-radius: 2px;
+  border: none;
+  height: 3px;
+  background-color: var(--text-blue);
+  margin: 30px 0;
+  border-radius: 2px;
 }
 
 ul.styled-list {
-    margin: 12px 0 20px 30px;
+  margin: 12px 0 20px 30px;
 }
 
 ul.styled-list li {
-    margin-bottom: 6px;
+  margin-bottom: 6px;
 }
 
-/* Imagens e Figuras */
 img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 10px;
-    border: 3px solid var(--text-blue);
-    box-shadow: 4px 4px 0px var(--border-purple);
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  border: 3px solid var(--text-blue);
+  box-shadow: 4px 4px 0px var(--border-purple);
 }
 
 .img-center {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 22px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 22px 0;
 }
 
 .img-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-    align-items: center;
-    margin: 22px 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  margin: 22px 0;
 }
 
 .img-row img {
-    max-height: 260px;
-    width: auto;
-    object-fit: cover;
+  max-height: 260px;
+  width: auto;
+  object-fit: cover;
 }
 
-/* Texto com imagem flutuante (Resumo e Introdução) */
 .float-section::after {
-    content: "";
-    display: table;
-    clear: both;
+  content: "";
+  display: table;
+  clear: both;
 }
 
 .img-float-left {
-    float: left;
-    margin: 6px 26px 16px 0;
-    max-width: 300px;
+  float: left;
+  margin: 6px 26px 16px 0;
+  max-width: 300px;
 }
 
-/* Cards de Discografia */
 .disco-card {
-    display: flex;
-    align-items: center;
-    gap: 26px;
-    background-color: var(--bg-pink-light);
-    border: 3px solid var(--text-blue);
-    box-shadow: 5px 5px 0px var(--border-purple);
-    border-radius: 12px;
-    padding: 20px;
-    margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 26px;
+  background-color: var(--bg-pink-light);
+  border: 3px solid var(--text-blue);
+  box-shadow: 5px 5px 0px var(--border-purple);
+  border-radius: 14px;
+  padding: 22px;
+  margin-bottom: 26px;
 }
 
 .disco-card img {
-    width: 220px;
-    height: 220px;
-    object-fit: cover;
-    flex-shrink: 0;
-    box-shadow: none;
+  width: 220px;
+  height: 220px;
+  object-fit: cover;
+  flex-shrink: 0;
+  box-shadow: 3px 3px 0px var(--border-purple);
 }
 
 .disco-info {
-    flex: 1;
+  flex: 1;
 }
 
 .disco-info h3 {
-    font-size: 1.25rem;
-    margin-bottom: 8px;
-}
-
-.disco-info audio {
-    width: 100%;
-    max-width: 400px;
-    margin: 12px 0 8px;
-    border-radius: 30px;
+  font-size: 1.25rem;
+  margin-bottom: 12px;
 }
 
 .track-caption {
-    font-size: 0.95rem;
-    text-align: left;
-    margin-bottom: 0;
+  font-size: 0.95rem;
+  text-align: left;
+  margin-top: 8px;
+  margin-bottom: 0;
 }
 
-/* Vídeo (Vida Pessoal) */
+/* Player de Áudio Temático */
+.custom-audio-player {
+  position: relative;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.28),
+    rgba(85, 78, 156, 0.16)
+  );
+  border: 3px solid var(--text-blue);
+  box-shadow: 4px 4px 0px var(--border-purple);
+  border-radius: 14px;
+  padding: 16px 16px 12px;
+  margin: 18px 0 10px;
+  max-width: 460px;
+}
+
+.custom-audio-player::before {
+  content: "👽 🛴 🤠 🔫";
+  position: absolute;
+  top: -15px;
+  right: 14px;
+  background-color: var(--bg-pink);
+  border: 2px solid var(--text-blue);
+  border-radius: 20px;
+  padding: 1px 10px;
+  font-size: 0.92rem;
+  letter-spacing: 3px;
+  box-shadow: 2px 2px 0px var(--border-purple);
+}
+
+.player-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.play-btn {
+  background-color: var(--text-blue);
+  color: #ffffff;
+  border: 2px solid var(--border-purple);
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  font-size: 1.15rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition:
+    transform 0.15s ease,
+    background-color 0.2s ease;
+  box-shadow: 2px 2px 0px var(--border-purple);
+}
+
+.play-btn:hover {
+  transform: scale(1.08);
+  background-color: var(--border-purple);
+}
+
+.play-btn:active {
+  transform: scale(0.95);
+}
+
+.progress-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.progress-bar-bg {
+  width: 100%;
+  height: 11px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border: 2px solid var(--text-blue);
+  border-radius: 10px;
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--text-blue), var(--border-purple));
+  border-radius: 8px;
+  transition: width 0.1s linear;
+}
+
+.time-display {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.82rem;
+  font-weight: bold;
+  color: var(--text-blue);
+}
+
+.player-badge {
+  font-size: 0.8rem;
+  font-weight: bold;
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  opacity: 0.92;
+}
+
+/* Moldura Temática do Player de Vídeo */
 .video-box {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 22px 0;
+  position: relative;
+  background-color: var(--bg-pink-light);
+  border: 3px solid var(--text-blue);
+  box-shadow: 6px 6px 0px var(--border-purple);
+  border-radius: 16px;
+  padding: 20px 20px 18px;
+  margin: 30px auto;
+  max-width: 540px;
+}
+
+.video-box::before {
+  content: "🛴  🤠  👽  OLIVER TREE TV  🔫  🛸  🛴";
+  display: block;
+  width: 100%;
+  text-align: center;
+  background-color: var(--text-blue);
+  color: #ffffff;
+  font-size: 0.85rem;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  margin-bottom: 14px;
+  box-shadow: 2px 2px 0px var(--border-purple);
 }
 
 .video-box video {
-    max-width: 100%;
-    border-radius: 10px;
-    border: 3px solid var(--text-blue);
-    box-shadow: 4px 4px 0px var(--border-purple);
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  border: 3px solid var(--text-blue);
+  background-color: #000000;
+  display: block;
 }
 
 .video-caption {
-    font-size: 0.85rem;
-    margin-top: 8px;
-    text-align: center;
+  font-size: 0.88rem;
+  font-weight: bold;
+  margin-top: 12px;
+  text-align: center;
+  display: block;
 }
 
-/* Responsividade para Celular e Tablet */
 @media (max-width: 820px) {
-    body {
-        overflow: auto;
-    }
+  body {
+    overflow: auto;
+  }
 
-    .app-layout {
-        display: block;
-        height: auto;
-    }
+  .app-layout {
+    display: block;
+    height: auto;
+  }
 
-    .topo {
-        position: sticky;
-        top: 0;
-        z-index: 100;
-        height: 65px;
-        padding-left: 55px;
-    }
+  .topo {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    height: 65px;
+    padding-left: 55px;
+  }
 
-    .menu-toggle {
-        display: block;
-    }
+  .menu-toggle {
+    display: block;
+  }
 
-    .menu {
-        display: none;
-        position: fixed;
-        top: 65px;
-        left: 0;
-        width: 250px;
-        height: calc(100vh - 65px);
-        z-index: 99;
-        box-shadow: 5px 0 15px rgba(0, 0, 0, 0.25);
-    }
+  .menu {
+    display: none;
+    position: fixed;
+    top: 65px;
+    left: 0;
+    width: 250px;
+    height: calc(100vh - 65px);
+    z-index: 99;
+    box-shadow: 5px 0 15px rgba(0, 0, 0, 0.25);
+  }
 
-    .menu.open {
-        display: flex;
-    }
+  .menu.open {
+    display: flex;
+  }
 
-    .conteudo {
-        padding: 25px 20px;
-        overflow-y: visible;
-    }
+  .conteudo {
+    padding: 25px 20px;
+    overflow-y: visible;
+  }
 
-    .img-float-left {
-        float: none;
-        display: block;
-        margin: 0 auto 20px;
-    }
+  .img-float-left {
+    float: none;
+    display: block;
+    margin: 0 auto 20px;
+  }
 
-    .disco-card {
-        flex-direction: column;
-        text-align: center;
-    }
+  .disco-card {
+    flex-direction: column;
+    text-align: center;
+  }
 
-    .track-caption {
-        text-align: center;
-    }
+  .custom-audio-player {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .track-caption {
+    text-align: center;
+  }
 }
