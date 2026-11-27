@@ -33,7 +33,7 @@ Estarei sempre postando novos releases para caso vocês, usuários queiram o có
 
 Apesar da versão v1.0.0 ter sido lançada, novas versões serão lançadas e o trabalho no site sempre estará acontecendo.
 
-Versão atual: v1.1.3-2
+Versão atual: v2.0.0
 
 Histórico de versões publicadas:
 
@@ -58,6 +58,8 @@ v1.1.2 - 03/out/2026 build
 v1.1.3 - 15/out/2026 first build
 
 v1.1.3-2 - 15/out/2026 second build
+
+v2.0.0 - 26/nov/2026 build
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
